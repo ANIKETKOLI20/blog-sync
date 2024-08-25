@@ -23,32 +23,36 @@ function PostList() {
   };
 
   return (
-    <div>
-      <h2 className="text-2xl font-bold mb-4">Posts</h2>
-      <ul>
+    <div className="container mx-auto py-8">
+      <h2 className="text-3xl font-bold text-center mb-6">Blog Posts</h2>
+      <ul className="space-y-4">
         {posts.map(post => (
-          <li key={post.id} className="mb-2 flex items-center">
-            <Link to={`/posts/${post.id}`} className="text-blue-600 hover:underline">
+          <li key={post.id} className="p-4 bg-white shadow rounded flex justify-between items-center">
+            <Link to={`/posts/${post.id}`} className="text-xl text-blue-600 hover:underline font-semibold">
               {post.title}
             </Link>
-            <button 
-              onClick={() => handleDelete(post.id)} 
-              className="ml-4 text-red-600 hover:text-red-800"
-            >
-              <FontAwesomeIcon icon={faTrash} />
-            </button>
-            <Link 
-              to={`/create/${post.id}`} 
-              className="ml-2 text-yellow-600 hover:text-yellow-800"
-            >
-              <FontAwesomeIcon icon={faEdit} />
-            </Link>
+            <div className="flex items-center">
+              <button 
+                onClick={() => handleDelete(post.id)} 
+                className="text-red-600 hover:text-red-800 mr-4"
+              >
+                <FontAwesomeIcon icon={faTrash} />
+              </button>
+              <Link 
+                to={`/create/${post.id}`} 
+                className="text-yellow-600 hover:text-yellow-800"
+              >
+                <FontAwesomeIcon icon={faEdit} />
+              </Link>
+            </div>
           </li>
         ))}
       </ul>
-      <Link to="/create" className="mt-4 inline-block text-white bg-blue-600 px-4 py-2 rounded">
-        Create New Post
-      </Link>
+      <div className="text-center mt-8">
+        <Link to="/create" className="inline-block bg-blue-600 text-white px-6 py-3 rounded shadow hover:bg-blue-700">
+          Create New Post
+        </Link>
+      </div>
     </div>
   );
 }
